@@ -247,7 +247,7 @@ TASKBOARD.builder.buildCardFromJSON = function(card){
 	}
 	cardLi += $.tag("span", card.name.escapeHTML(), { className : 'title' });
 
-	cardLi += $.tag("span", "hours left: " + $.tag("span", card.hours_left, { className : 'hours' }), { className : 'progress' });
+  cardLi += $.tag("span", "points: " + $.tag("span", card.points, { className : 'points' }), { className : 'progress' });
 
 	if(card.tag_list.length){
 		var tagsUl = "";
@@ -394,8 +394,9 @@ TASKBOARD.builder.buildBigCard = function(card){
 		tagsForm = $.tag("dd", tagsForm);
 		cardDl += tagsForm;
 	}
-	cardDl += $.tag("dt", "Hours left");
-	cardDl += $.tag("dd", card.hours_left, { id : "progress" });
+		
+	cardDl += $.tag("dt", "Points");
+	cardDl += $.tag("dd", card.points, { id : "points", className : "editable" });
 
 	cardDl = $.tag("dl", cardDl, { id : 'card' });
 
@@ -462,33 +463,27 @@ TASKBOARD.builder.buildBigCard = function(card){
 			.bind("mouseenter.editable", function(){ if($(this).find("form").length){ return; } $(this).addClass("hovered"); })
 			.bind("mouseleave.editable", function(){ $(this).removeClass("hovered"); });
 
-		bigCard.find('#progress').editable(function(val){
-			var updatedDateString = card.hours_left_updated;
-			var updatedToday = false;
-			if(updatedDateString){
-				var updatedDate = new Date();
-				updatedDate.setISO8601(updatedDateString);
-				var now = new Date();
-				if(now.getYear() == updatedDate.getYear() && now.getMonth() == updatedDate.getMonth() && now.getDay() == updatedDate.getDay()){
-					updatedToday = true;
-				}
-			}
-			var value;
-			if(!isNaN(val) && val >= 0) {
-					TASKBOARD.remote.api.updateCardHours(card.id, val, $(this).find("select").val());
-					TASKBOARD.remote.get.cardBurndown(card.id, function(data){
-						TASKBOARD.burndown.render($('#cardBurndown'), data);
-					});
-					card.hours_left = val;
-					TASKBOARD.api.updateCard({ card: card }); // redraw small card
-					return val;
-			} else {
-				return this.revert;
-			}
-		}, { type : 'textselect', onblur : 'ignore', submit : 'Save', cancel : 'Cancel' })
-		.bind("mouseenter.editable", function(){ if($(this).find("form").length){ return; } $(this).addClass("hovered"); })
-		.bind("mouseleave.editable", function(){ $(this).removeClass("hovered"); });
-
+    var pointsData = function(){
+      var current = $(this).closest('dl').data('data').points;
+      var res = {}
+      for (var i=0; i < 15; i++) {
+        res[i] = i;
+      };
+      res['selected'] = current;
+      return(res);
+    }
+    
+		bigCard.find('#points')
+			.editable(function(value, settings){
+					TASKBOARD.remote.api.updateCardPoints(card.id, value);
+					card.points = value;
+					return value;
+				}, {
+					 type : 'select', submit : 'Save', cancel : 'Cancel', onblur : 'ignore',
+					 data : pointsData })
+			.bind("mouseenter.editable", function(){ if($(this).find("form").length){ return; } $(this).addClass("hovered"); })
+			.bind("mouseleave.editable", function(){ $(this).removeClass("hovered"); });
+  			
 		bigCard.find('#tags .deleteTag').bind('click',function(){
 			var tag = $(this).parent().find(".tag").text();
 			var index = card.tag_list.indexOf(tag);
@@ -788,8 +783,6 @@ TASKBOARD.init = function(){
 		return false;
 	});
 
-	$(".actionShowBurndown").bind("click", this.showBurndown);
-
 	$("#formActions img").rollover();
 	$("#formActions .actionHideForm").click(function(){ TASKBOARD.form.close(); $("#actions li").removeClass("current"); });
 	$("#formActions").hide();
@@ -860,49 +853,11 @@ TASKBOARD.burndown.render = function(element, data){
 	$.plot(element, [data], TASKBOARD.burndown.options);
 };
 
-
-TASKBOARD.showBurndown = function(ev){
-	ev.preventDefault();
-	var self = TASKBOARD;
-	TASKBOARD.remote.get.taskboardBurndown(self.id, function(data){
-
-		if(!$('#burndown').exists()){
-			$('body').append('<div id="burndown"></div>');
-		}
-
-		// div must have height and width to plot
-		$("#burndown").css({ height: '400px', width : '600px' });
-		$("#burndown").show();
-		
-		TASKBOARD.burndown.render($('#burndown'), data);
-		$("#burndown").openOverlay({
-			height: '400px',
-			width : '600px',
-			position: 'fixed',
-			top: '50%',
-			left: '50%',
-			marginTop: '-200px',
-			marginLeft:'-300px',
-			backgroundColor: 'white',
-			border: '1px solid #CCCCCC',
-			borderRadius: '20px',
-			zIndex: 1001
-		});
-		
-	});
-};
-
 TASKBOARD.openCard = function(card){
 	$('#card').remove();
 	var bigCard = TASKBOARD.builder.buildBigCard(card);
 	bigCard.appendTo($('body')).hide()
 		.openOverlay({ zIndex: 1001 });
-	TASKBOARD.remote.get.cardBurndown(card.id, function(data){
-		var burndown = $("<dd id='cardBurndown'></dd>");
-		burndown.css({ width: '550px', height: '300px' });
-		bigCard.append(burndown);
-		TASKBOARD.burndown.render(burndown, data);
-	});	
 };
   
 $(document).ready(function() {
@@ -1059,9 +1014,6 @@ TASKBOARD.remote = {
 				callback(data);
 				TASKBOARD.remote.loading.stop();
 			});
-		},
-		cardBurndown: function(id, callback){
-			$.getJSON('/card/load_burndown/' + id, callback);
 		}
 	},
 	//TODO: change to POST requests
@@ -1095,6 +1047,9 @@ TASKBOARD.remote = {
 		},
 		updateCardNotes : function(cardId, notes){
 			TASKBOARD.remote.callback('/card/update_notes', { id : cardId, notes : notes });
+		},
+		updateCardPoints : function(cardId, points){
+			TASKBOARD.remote.callback('/card/update_points', { id : cardId, points : points });
 		},
 		addTags : function(cardId, tags){
 			TASKBOARD.remote.callback('/card/add_tag', { id : cardId, tags : tags });

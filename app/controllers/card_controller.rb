@@ -36,6 +36,14 @@ class CardController < JuggernautSyncController
     @card.save
     render :json => sync_update_card(@card, { :before => before, :after => @card.notes.gsub(/\n/, "\\n"), :message => "Notes updated for '#{@card.name}'"})
   end
+  
+  def update_points
+    @card = Card.find(params[:id].to_i)
+    before = @card.points
+    @card.points = params[:points]
+    @card.save
+    render :json => sync_update_card(@card, { :before => before, :after => @card.points, :message => "Points updated for '#{@card.name}'"})
+  end
 
   def change_color
     card = Card.find(params[:id].to_i)

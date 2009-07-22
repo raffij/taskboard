@@ -9,10 +9,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090428123003) do
+ActiveRecord::Schema.define(:version => 20090722161151) do
 
   create_table "cards", :force => true do |t|
-    t.text     "name",                        :null => false
+    t.text     "name",                                       :null => false
     t.text     "notes"
     t.integer  "taskboard_id"
     t.integer  "column_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20090428123003) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "points",                      :default => 2
   end
 
   add_index "cards", ["column_id"], :name => "fk_cards_column_id"

@@ -443,8 +443,12 @@
 					return(select);
 				},
 				content : function(string, settings, original) {
-					if (String == string.constructor) { 	 
-						eval ('var json = ' + string);
+					if (String == string.constructor || Object == string.constructor) {
+					  if(String == string.constructor){
+  						eval ('var json = ' + string); 
+					  } else {
+					    var json = string;
+					  }
 						for (var key in json) {
 							if (!json.hasOwnProperty(key)) {
 								continue;

@@ -200,7 +200,7 @@
 		}
 
 			#taskboard .column ol.cards > li {
-				min-height: 10px;
+				min-height: 25px;
 				margin-bottom: 5px;
 				border: 1px solid transparent;
 				padding: 5px 20px 5px 5px;
@@ -261,7 +261,9 @@
 
 				
 				#taskboard .column ol.cards li span.progress {
-					display:block;
+				  position: absolute;
+				  top: 5px;
+				  right: 20px;
 					font-size: 0.8em;
 					text-align: right;
 				}
