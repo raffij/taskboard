@@ -127,25 +127,6 @@ namespace :db do
   end
 end
 
-after 'deploy:update_code', 'sphinx:symlink'
-namespace :sphinx do
-  task :symlink, :roles => :app do
-    run("rm -f #{latest_release}/config/#{rails_env}.sphinx.conf")
-    run("ln -s #{shared_path}/#{rails_env}.sphinx.conf #{latest_release}/config/#{rails_env}.sphinx.conf")
-    
-    run("rm -f #{latest_release}/db/sphinx")
-    run("ln -s #{shared_path}/sphinx #{latest_release}/db/sphinx")
-  end
-  
-  task :rebuild, :roles => :app do
-    run("cd #{latest_release} && RAILS_ENV=#{stage} rake thinking_sphinx:rebuild")
-  end
-  
-  task :setup, :roles => :app do
-    run("mkdir #{shared_path}/sphinx")
-  end
-end
-
 set :log_name, Proc.new {
   default = 'production.log'
   trx = Capistrano::CLI.ui.ask "Log name [#{default}] : "
