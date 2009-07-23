@@ -1,4 +1,5 @@
 log/*.log
+log/report/*.log
 log/*.pid
 db/*.sqlite3
 tmp
