@@ -29,7 +29,7 @@
 
 #headerBar {
 	position: relative;
-	background-color:#457F9F;
+	background-color:#000;
 	color:#CCCCCC;
 	overflow: hidden;
 	clear: both;
@@ -179,8 +179,10 @@
 		}
 
 		#taskboard .column h2 {
-			text-align: center;
+			text-align: left;
 			margin-bottom: 10px;
+			padding-left: 5px;
+			font-weight: bold;
 		}
 
 		#taskboard .column h2:hover {
