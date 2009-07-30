@@ -263,11 +263,18 @@
 
 				
 				#taskboard .column ol.cards li span.progress {
-				  position: absolute;
-				  top: 5px;
-				  right: 20px;
-					font-size: 0.8em;
-					text-align: right;
+				  /*position: absolute;*/
+					/*top: 5px;*/
+					/*right: 20px;*/
+						font-size: 0.8em;
+						/*text-align: right;*/
+						-moz-background-clip:border;
+						-moz-background-inline-policy:continuous;
+						-moz-background-origin:padding;
+						-moz-border-radius:10px;
+						background:#FFFFFF none repeat scroll 0 0;
+						margin-left:5px;
+						padding:0 2px;
 				}
 
 					#taskboard .column ol.cards li span.progress .hours {
