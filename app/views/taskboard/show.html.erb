@@ -34,6 +34,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	<%= juggernaut :channels => [@taskboard_id], :debug => false %>
 </head>
 <body>
+
 	<div id="header">
 	<div id="headerBar">
 		<h1><%= link_to "Taskboard", { :controller => "taskboard", :action => "index" }, :title => "Back to taskboards list", :rel => 'home' %></h1>
@@ -68,10 +69,13 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 			</fieldset>
 		</form>
 	</div>
+	
 
 	<ol id="taskboard">
 		<li><!-- just to make it valid --></li>
 	</ol>
+
+
 
 </body>
 </html>

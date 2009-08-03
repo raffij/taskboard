@@ -19,6 +19,10 @@
 
 @import url(generic.css);
 
+#container {
+	height:100%;
+}
+
 #header {
 	position: fixed;
 	top:0;
@@ -208,8 +212,9 @@
 				padding: 5px 20px 5px 5px;
 				background-color: #F8E065;
 				position: relative;
-				overflow: hidden;
+			/*	overflow: hidden;*/
 				font-size: 0.8em;
+				line-height: 1.4em;
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
 			}
@@ -252,15 +257,15 @@
 
 					#taskboard .column ol.cards li ul.tags li {
 						float:left;
-						padding: 1px 2px;
+						padding: 2px 3px;
 						margin: 2px 2px 0 0;
 						/*border: 1px solid #CCCCCC;*/
 						background-color: #EEEEEE;
 						font-size: 0.8em;
 						-moz-border-radius: 5px;
 						-webkit-border-radius: 5px;
-						-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px ;
-						-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);
+						/*-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px ;
+						-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);*/
 					}
 
 				
@@ -280,7 +285,7 @@
 						background:#ddd none repeat scroll 0 0;
 						color: #000;
 						margin-right: 5px;
-						padding:0px 3px;
+						padding:2px 3px;
 				}
 
 					#taskboard .column ol.cards li span.progress .hours {
@@ -408,7 +413,7 @@
 /* zoom 4 */
 
 	#taskboard.zoom_4 .column ol.cards li ul.tags {
-		height: 1.6em;
+		height: 1.8em;
 	}
 
 /* Form drop animation hack */
@@ -464,7 +469,7 @@
 
 .cardNum {
 	color: #000;
-	padding: 0 4px;
+	padding: 2px 3px;
 	font-weight: normal;
 	font-size: 0.8em;
 	/*margin-right: 5px;*/
@@ -685,4 +690,11 @@
 	background-color: #EEE;
 	border: 1px solid #CCC;
 
+}
+
+/* LEGEND */
+
+.legend {
+	position: absolute;
+	bottom: 30px;
 }

@@ -1,6 +1,6 @@
 class AddPointsToCards < ActiveRecord::Migration
   def self.up
-    add_column :cards, :points, :integer, :default => 2
+    add_column :cards, :points, :integer, :default => 0
   end
 
   def self.down
