@@ -28,3 +28,11 @@ body {
 	font-family: Arial, sans-serif;
 }
 
+textarea, input, button, select {
+	font-family: arial, sans-serif;
+	font-size: 1em;
+}
+
+dd, dt {
+	padding: 2px;
+}

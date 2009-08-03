@@ -245,9 +245,11 @@ TASKBOARD.builder.buildCardFromJSON = function(card){
 	if(card.issue_no){
 		cardLi += $.tag('span', $.tag('a', card.issue_no, { href : card.url, rel : 'external'}) + ": ",	{ className : 'alias' });
 	}
-	cardLi += $.tag("span", '#' + card.id + ' ' + card.name.escapeHTML(), { className : 'title' });
+	cardLi += $.tag("span", '#' + card.id, { className : 'cardNum' } );
+	cardLi += $.tag("span", '+' + $.tag("span", card.points, { className : 'points' }), { className : 'progress' });
+	cardLi += $.tag("span",  card.name.escapeHTML(), { className : 'title' });
 
-  cardLi += $.tag("span", $.tag("span", card.points, { className : 'points' }), { className : 'progress' });
+  
 
 	if(card.tag_list.length){
 		var tagsUl = "";

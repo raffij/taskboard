@@ -252,13 +252,15 @@
 
 					#taskboard .column ol.cards li ul.tags li {
 						float:left;
-						padding: 2px;
+						padding: 1px 2px;
 						margin: 2px 2px 0 0;
-						border: 1px solid #CCCCCC;
+						/*border: 1px solid #CCCCCC;*/
 						background-color: #EEEEEE;
 						font-size: 0.8em;
 						-moz-border-radius: 5px;
 						-webkit-border-radius: 5px;
+						-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px ;
+						-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);
 					}
 
 				
@@ -271,15 +273,20 @@
 						-moz-background-clip:border;
 						-moz-background-inline-policy:continuous;
 						-moz-background-origin:padding;
-						-moz-border-radius:10px;
-						background:#FFFFFF none repeat scroll 0 0;
-						margin-left:5px;
-						padding:0 2px;
+						-moz-border-radius-bottomright:5px;
+						-moz-border-radius-topright:5px;
+						-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px ;
+						-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);
+						background:#ddd none repeat scroll 0 0;
+						color: #000;
+						margin-right: 5px;
+						padding:0px 3px;
 				}
 
 					#taskboard .column ol.cards li span.progress .hours {
 						font-size: 1.2em;
 						font-weight: bold;
+					
 					}
 
 						#taskboard .column ol.cards li span.progress .hours form {
@@ -455,6 +462,21 @@
 	background-color : #44AA00;
 }
 
+.cardNum {
+	color: #000;
+	padding: 0 4px;
+	font-weight: normal;
+	font-size: 0.8em;
+	/*margin-right: 5px;*/
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-topleft:5px;
+	-webkit-border-bottomleft:5px;
+	-webkit-border-topleft:5px;
+	background: #eee;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px ;
+	-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);
+}
+
 
 #card {
 	position: absolute;
@@ -467,12 +489,13 @@
 	overflow: hidden;
 	-moz-border-radius: 5px;
 	-webkit-border-radius : 5px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
 	-moz-box-shadow:3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 #card dt {
 	float: left;
-	width: 200px;
+	/*width: 200px;*/
 	clear: both;
 	font-weight: bold;
 }
@@ -504,7 +527,7 @@
 #card #notes h6 { font-size: 0.8em; }
 
 #card #notes p {
-	margin-bottom: 0.5em;
+	/*margin-bottom: 0.5em;*/
 }
 
 #card #notes ul,
