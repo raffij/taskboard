@@ -54,10 +54,10 @@ h1 {
 }
 
 	#home ul.actions > li {
-		width: 300px;
+		width: 295px;
 		padding: 20px;
 		float: left;
-		border-right: 1px dashed #CCCCCC;
+		border-right: 1px dotted #CCCCCC;
 	}
 
 	#home ul.actions > li:last-child {
