@@ -19,12 +19,33 @@
 
 @import url(generic.css);
 
+body#home {
+	background: #000;
+}
+
+h1, h2, h3, p, label {
+	color:#fff;
+}
+
+a {
+	color: #ffcc00;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+input {
+	margin-top: 10px;
+}
+
 h1 {
-	width: 400px;
-	height: 100px;
+	width: 487px;
+	height: 87px;
 	margin: 20px auto 0;
 	text-indent: -9999px;
-	background: url(/images/logo.png) no-repeat scroll 0 0;
+	background: url(/images/mxm_logo.png) no-repeat scroll 0 0;
 }
 
 #home ul.actions {

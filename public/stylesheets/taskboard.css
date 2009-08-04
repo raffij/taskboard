@@ -493,8 +493,8 @@
 	overflow: hidden;
 	-moz-border-radius: 5px;
 	-webkit-border-radius : 5px;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 5px;
-	-moz-box-shadow:3px 3px 5px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 5px;
+	-moz-box-shadow:0px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 #card dt {
@@ -531,7 +531,7 @@
 #card #notes h6 { font-size: 0.8em; }
 
 #card #notes p {
-	/*margin-bottom: 0.5em;*/
+	margin-bottom: 0.2em;
 }
 
 #card #notes ul,

@@ -256,7 +256,7 @@ TASKBOARD.builder.buildCardFromJSON = function(card){
 		$.each(card.tag_list, function(i, tag){
 			tagsUl += $.tag("li", tag.escapeHTML());
 		});
-		tagsUl = $.tag("ul", tagsUl, { className : 'tags' });
+		tagsUl = $.tag("ul", tagsUl, { className : 'tags', id : 'filterTags' });
 		cardLi += tagsUl;
 	}
 
@@ -949,7 +949,7 @@ $.fn.openOverlay = function(css){
 			position: 'fixed',
 			top: '0',
 			left: '0',
-			backgroundColor: 'white',
+			backgroundColor: 'black',
 			opacity: 0.8,
 			zIndex: 1000
 		}).click(function(){
