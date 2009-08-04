@@ -19,9 +19,13 @@
 
 @import url(generic.css);
 
+body {
+	background: #000;
+}
+
 h1 {
-	width: 400px;
-	height: 100px;
+	width: 487px;
+	height: 87px;
 	margin: 20px auto 0;
 	text-indent: -9999px;
 	background: url(/images/mxm_logo.png) no-repeat scroll 0 0;
@@ -29,11 +33,11 @@ h1 {
 
 fieldset {
 	margin: 0;
-	padding: 15px;
-	background-color: #F8E065;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	width: 400px;
+	padding: 10px;
+	background-color: #fff;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 487px;
 	margin: 20px auto;
 }
 
@@ -60,10 +64,10 @@ fieldset input[type=submit] {
 
 #notice {
 	margin: 0;
-	padding: 15px;
-	background-color: #F8E065;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	width: 400px;
+	padding: 10px;
+	background-color: #ffcc00;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	width: 487px;
 	margin: 20px auto;
 }
