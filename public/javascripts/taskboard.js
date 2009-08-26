@@ -90,6 +90,9 @@ TASKBOARD.builder.options = {
 			}
 			//TODO: get padding from CSS?
 			ui.helper.width($(ui.item).parent().width() - 25);
+			var column_id = ui.item.parent().parent().data('data').id;
+			var points = ui.item.data("data").points
+			TASKBOARD.api.updateMovedFromColumnPoints(column_id, points);
 		},
 		//.TODO: just a workaround for opacity
 		sort : function(ev, ui){
@@ -176,8 +179,13 @@ TASKBOARD.builder.buildColumnFromJSON = function(column){
 	$.each(column.cards.sortByPosition(), function(i, card){
 		cardsOl.append(TASKBOARD.builder.buildCardFromJSON(card));
 	});
+	var columnPoints = 0;
+	$.each(column.cards.sortByPosition(), function(i, card){
+		columnPoints += card.points;
+	});
 	
 	var header = $.tag("h2", column.name.escapeHTML());
+	header += $.tag("p", "Total Points: " + columnPoints, { id : 'column_' + column.id + '_totalpoints', className :'totalpoints' });
 	var columnLi = "";
 	// edit-mode-only
 	if(TASKBOARD.editor){
@@ -632,6 +640,7 @@ TASKBOARD.api = {
 		});
 		TASKBOARD.utils.expandTaskboard();
 		TASKBOARD.remote.loading.stop();
+		TASKBOARD.api.updateColumnPoints(card.column_id);
 		TASKBOARD.tags.updateTagsList();
 		TASKBOARD.tags.updateCardSelection();
 	},
@@ -656,6 +665,7 @@ TASKBOARD.api = {
 			}
 		}
 		cardLi.effect('highlight', {}, 1000);
+		TASKBOARD.api.updateColumnPoints(card.column_id);
 		TASKBOARD.utils.expandTaskboard();
 	},
 
@@ -665,6 +675,7 @@ TASKBOARD.api = {
 		cardLi.fadeOut(1000, function(){
 			$(this).remove();
 			TASKBOARD.utils.expandTaskboard();
+			TASKBOARD.api.updateColumnPoints(card.column_id);
 			TASKBOARD.tags.updateTagsList();
 			TASKBOARD.tags.updateCardSelection();
 		});
@@ -699,6 +710,7 @@ TASKBOARD.api = {
 		var newCard = TASKBOARD.builder.buildCardFromJSON(card);
 		$('#card_' + card.id).before(newCard).remove();
 		newCard.effect('highlight', {}, 1000);
+		TASKBOARD.api.updateColumnPoints(card.column_id);
 		TASKBOARD.tags.updateTagsList();
 		TASKBOARD.tags.updateCardSelection();
 	},
@@ -714,7 +726,26 @@ TASKBOARD.api = {
 		card = card.card;
 		var cardLi = $('#card_' + card.id);
 		cardLi.css({ backgroundColor : card.color });
-	}
+	},
+	
+    updateColumnPoints : function(column_id){
+      var columnPoints = 0;
+      $('#column_' + column_id + ' .points').each(function(){
+		columnPoints += parseInt($(this).text());
+      });
+      $('#column_' + column_id + '_totalpoints').text("Total Points: " + columnPoints);
+    },
+    
+    updateMovedFromColumnPoints : function(column_id, points){
+      var columnPoints = 0;
+      $('#column_' + column_id + ' .points').each(function(){
+		columnPoints += parseInt($(this).text());
+      });
+      //HACKY!!
+      columnPoints -= points;
+      columnPoints -= points;
+      $('#column_' + column_id + '_totalpoints').text("Total Points: " + columnPoints);
+    }
 };
 
 /* 
