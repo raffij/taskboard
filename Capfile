@@ -1,13 +1,14 @@
 # Configuration
 
-set :application, "taskboard"
+set :application, "taskboard2"
 set :use_mysql, true
 
 ssh_options[:keys] = File.expand_path('~/keys/mbm-keypair')
+ssh_options[:forward_agent] = true
 
 default_run_options[:pty] = true
 set :deploy_via, :remote_cache
-set :repository,  "git@github.com:maccman/taskboard.git"
+set :repository,  "git@github.com:madebymany/taskboard.git"
 set :scm, "git"
 set :branch, "master"
 
