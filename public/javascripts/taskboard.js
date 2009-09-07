@@ -792,6 +792,12 @@ TASKBOARD.init = function(){
 		$(".actionToggleAll").text("Zoom in");
 	}
 	
+	$(".cardKey").bind("click", function(ev){
+		$(this).parent().siblings().removeClass("current").end().toggleClass("current");
+		TASKBOARD.form.toggle('#cardKey');
+		ev.preventDefault();
+	});
+	
 	$(".actionAddCards").bind("click", function(ev){
 		$(this).parent().siblings().removeClass("current").end().toggleClass("current");
 		TASKBOARD.form.toggle('#fieldsetAddCards');

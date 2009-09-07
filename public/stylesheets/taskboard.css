@@ -608,7 +608,18 @@
 		color: #000000;
 	}
 
+#cardKeyWrapper ol {
+	margin-top: 10px;
+	width: 700px;
+}
 
+#cardKeyWrapper ol li{
+	margin-right: 0px;
+	display: inline;
+	padding: 5px;
+	font-size: .7em;
+	text-transform: uppercase; 
+}
 
 
 
