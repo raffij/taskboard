@@ -87,9 +87,9 @@
 	}
 
 	#actions li.current {
-		border: 2px solid #457F9F;
-		border-bottom-color: #74AFCF;
-		background-color: #74AFCF; 
+		border: 3px solid #000;
+		border-bottom-color: #4F4D4C;
+		background-color: #4F4D4C; 
 		padding: 5px;
 		-moz-border-radius: 5px 5px 0 0;
 		-webkit-border-top-left-radius: 5px 5px;
@@ -112,10 +112,10 @@
 }
 
 	#formActions fieldset {
-		background-color:#74AFCF;
+		background-color:#4F4D4C;
 		padding: 7px 15px 15px;
-		width: 600px;
-
+		/*width: 600px;*/
+		margin-left:20px;
 		-moz-border-radius: 0 0 5px 5px;
 		-webkit-border-bottom-left-radius: 5px 5px;
 		-webkit-border-bottom-right-radius: 5px 5px;
