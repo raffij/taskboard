@@ -702,19 +702,19 @@
 #filterTags li a {
 	display: block;
 	padding: 3px;
-	background-color: #CCCCCC;
+	background-color: #666;
 	border: 1px solid #555555;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	margin: 2px;
 	text-decoration: none;
-	color: #000000;
+	color: #fff;
 }
 
 #filterTags li.current a {
-	background-color: #EEE;
+	background-color: #fff;
 	border: 1px solid #CCC;
-
+color:#000;
 }
 
 /* LEGEND */
