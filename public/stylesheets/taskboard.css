@@ -498,7 +498,7 @@
 
 
 #card {
-	position: absolute;
+	position: fixed;
 	top: 50px;
 	left: 50%;
 	margin-left: -400px;
