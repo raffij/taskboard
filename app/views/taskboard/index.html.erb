@@ -26,7 +26,9 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 
 <body id="home">
 
-<h1>Taskboard</h1>
+	<h1>
+		<%= link_to "Taskboard", { :controller => "taskboard", :action => "index" }, :title => "Back to taskboard list", :rel => 'home', :class => "logo" %>
+	</h1>
 
 <ul class="actions">
 <li>
@@ -37,7 +39,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 </li>
 <% if session[:editor] -%>
 <li>
-	<h2>Create a new one:</h2>
+	<h2>Do a new taskboard:</h2>
 	<form action="/taskboard/add_taskboard" method="get">
 	<fieldset>
 		<label for="name">Type a name of new taskboard:</label>
@@ -45,6 +47,10 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 		<p class="error"><%= flash[:error] %></p>
 	</fieldset>
 	</form>
+</li>
+<li>
+	<h2>User management</h2>
+	<h2><%= link_to 'Yes please!', users_path %></h2>
 </li>
 <% end -%>
 </ul>

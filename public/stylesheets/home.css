@@ -40,12 +40,13 @@ input {
 	margin-top: 10px;
 }
 
-h1 {
+h1 a.logo {
 	width: 487px;
 	height: 87px;
 	margin: 20px auto 0;
 	text-indent: -9999px;
 	background: url(/images/mxm_logo.png) no-repeat scroll 0 0;
+	display: block;
 }
 
 #home ul.actions {
@@ -54,14 +55,17 @@ h1 {
 }
 
 	#home ul.actions > li {
-		width: 295px;
-		padding: 20px;
-		float: left;
-		border-right: 1px dotted #CCCCCC;
+		border:1px solid #CCCCCC;
+		/*float:left;*/
+		margin:5px;
+		padding:20px;
+		/*width:280px;*/
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
 	}
 
 	#home ul.actions > li:last-child {
-		border-right: none;
+	
 	}
 
 	#home ul.actions > li h2 {
@@ -73,5 +77,3 @@ h1 {
 #home ul#taskboards li {
 	margin-bottom: 0.3em;
 }
-
-
