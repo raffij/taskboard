@@ -33,7 +33,7 @@
 
 #headerBar {
 	position: relative;
-	background-color:#000;
+	background-color:#666;
 	color:#CCCCCC;
 	overflow: hidden;
 	clear: both;
@@ -87,7 +87,7 @@
 	}
 
 	#actions li.current {
-		border: 3px solid #000;
+		border: 3px solid #666;
 		border-bottom-color: #4F4D4C;
 		background-color: #4F4D4C; 
 		padding: 4px 4px 5px 4px;
@@ -187,6 +187,7 @@
 			margin-bottom: 10px;
 			padding-left: 5px;
 			font-weight: bold;
+			color: #fff;
 		}
 
 		#taskboard .column h2:hover {
@@ -521,13 +522,19 @@
 
 #card dd {
 	float: right;
-	width: 550px;
+	width: 650px;
 	margin-bottom: 10px;
 }
 
-#card .hovered {
-	background-color: #FFFFD3;
+dl#card dd#notes {
+		overflow: auto; 
 }
+
+#card .hovered {
+	background-color: #d1d1d1;
+}
+
+/* Card type style -------------------------- */
 
 #card #notes h1,
 #card #notes h2,
@@ -538,7 +545,7 @@
 	margin-bottom: 0.5em;
 }
 
-#card #notes h1 { font-size: 1.5em; }
+#card #notes h1 { font-size: 1.5em; border-bottom: 1px solid ;}
 #card #notes h2 { font-size: 1.4em; }
 #card #notes h3 { font-size: 1.2em; }
 #card #notes h4 { font-size: 1.1em; }
@@ -571,7 +578,13 @@
 	font-weight: bold;
 }
 
+form #tagsForm {
+	margin:0;
+}
 
+#name, #notes, #points, #tagsForm {
+
+	}
 
 #card #name h1,
 #card #name h2,
