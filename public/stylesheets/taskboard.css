@@ -33,7 +33,7 @@
 
 #headerBar {
 	position: relative;
-	background-color:#666;
+	background-color:#292D33;
 	color:#CCCCCC;
 	overflow: hidden;
 	clear: both;
@@ -83,17 +83,23 @@
 
 	#actions li {
 		float: left;
-		padding: 7px;
+		padding: 4px;
+		margin-top:2px;
 	}
 
 	#actions li.current {
-		border: 3px solid #666;
-		border-bottom-color: #4F4D4C;
-		background-color: #4F4D4C; 
-		padding: 4px 4px 5px 4px;
-		-moz-border-radius: 5px 5px 0 0;
+		/*border: 3px solid #666;*/
+		border-bottom-color: #16191C;
+		background-color: #ffcc00; 
+		padding:  4px;
+		-moz-border-radius: 5px 5px 5px 5px;
 		-webkit-border-top-left-radius: 5px 5px;
 		-webkit-border-top-right-radius: 5px 5px;
+		-webkit-border-bottom-left-radius: 5px 5px;
+		-webkit-border-bottom-right-radius: 5px 5px;
+		}
+		#actions li.current a {
+			color: #000;
 		}
 
 	#actions li a {
@@ -102,23 +108,25 @@
 	}
 
 	#actions li a:hover {
-		border-bottom: 1px solid #ffffff;
 	}
-
+ /* the drop down menus --------------------------*/
 #formActions {
 	position: absolute;
+	margin-top:10px;
 	margin-right: 20px;
 	right: 0;
 }
 
 	#formActions fieldset {
-		background-color:#4F4D4C;
+		background-color:#16191C;
 		padding: 7px 15px 15px;
 		/*width: 600px;*/
 		margin-left:20px;
 		-moz-border-radius: 0 0 5px 5px;
 		-webkit-border-bottom-left-radius: 5px 5px;
 		-webkit-border-bottom-right-radius: 5px 5px;
+		-webkit-border-top-left-radius: 5px 5px;
+		-webkit-border-top-right-radius: 5px 5px;
 	}
 	
 	#formActions fieldset span {
@@ -184,21 +192,22 @@
 
 		#taskboard .column h2 {
 			text-align: left;
-			margin-bottom: 10px;
+			margin-bottom: 5px;
 			padding-left: 5px;
 			font-weight: bold;
 			color: #fff;
 		}
 
 		#taskboard .column h2:hover {
-			background-color: #FFFFD3;
+			/*background-color: #292D33;*/
+			color: #000;
 			cursor: text;
 		}
 		
 		#taskboard .column a.deleteColumn {
 			position: absolute;
 			top: -3px;
-			right: 0px;
+			right: 5px;
 			margin: 3px;
 		}
 
@@ -304,9 +313,9 @@
 							}
 
 			#taskboard .column ol.cards li.placeholder {
-				background-color: #FFFFFF;
-				border: 1px dashed #93853C;
+			/*	border: 1px dashed #93853C;*/
 				color: #FFFFFF;
+				background-image: url(/images/chequer.png); 
 			}
 
 			#taskboard .column ol.cards li.placeholder span,
@@ -432,9 +441,9 @@
 	-moz-border-radius:5px;
 /*-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px ;
 	-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);*/
-	background:#ddd none repeat scroll 0 0;
-	color: #000;
-	font-weight:bold;
+	/*background:#ddd none repeat scroll 0 0;*/
+	color: #fff;
+	font-weight:normal;
 }
 
 #tooltip {

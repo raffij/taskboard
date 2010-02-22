@@ -403,6 +403,7 @@ TASKBOARD.builder.buildBigCard = function(card){
 		tagsForm = $.tag("form", tagsForm, { id : 'tagsForm' });
 		tagsForm = $.tag("dd", tagsForm);
 		cardDl += tagsForm;
+		
 	}
 		
 	cardDl += $.tag("dt", "Points");
