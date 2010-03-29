@@ -36,7 +36,7 @@ TASKBOARD.utils = {
 	 * and min-height property to keep them expandable.
 	 */  
 	expandColumnsHeight : function(){
-		$("#taskboard ol.cards").equalHeight({ offset : 50, css : "min-height" });
+	/*	$("#taskboard ol.cards").equalHeight({ offset : 50, css : "min-height" });*/
 	},
 
 	/* 
@@ -257,6 +257,10 @@ TASKBOARD.builder.buildCardFromJSON = function(card){
 	cardLi += $.tag("span", '+' + $.tag("span", card.points, { className : 'points' }), { className : 'progress' });
 	cardLi += $.tag("span",  card.name.escapeHTML(), { className : 'title' });
 
+/* hacked in the card notes. */
+	var notes = card.notes ? (new Showdown.converter()).makeHtml(card.notes.escapeHTML()) : "";
+/*	cardLi += $.tag("dt", "Story", { id : "notes", classname : "notes" }); */
+	cardLi += $.tag("dd", notes, { id : "notes", className : "notes" });
   
 
 	if(card.tag_list.length){
@@ -467,6 +471,7 @@ TASKBOARD.builder.buildBigCard = function(card){
 			.editable(function(value, settings){
 					TASKBOARD.remote.api.updateCardNotes(card.id, value);
 					card.notes = value;
+					TASKBOARD.api.updateCard({ card: card }); // redraw small card
 					return value ? (new Showdown.converter()).makeHtml(value.escapeHTML()) : "";
 				}, { height: '200px', width: '100%',
 					 type : 'textarea', submit : 'Save', cancel : 'Cancel', onblur : 'ignore',
@@ -702,9 +707,9 @@ TASKBOARD.api = {
 		card = card.card;
 		$('#card_' + card.id + ' .title')
 			.text(card.name)
-			.effect('highlight', {}, 1000);
+			.effect('highlight', {}, 10000);
 	},
-
+	
 	// TODO: update also big card
 	updateCard : function(card){
 		card = card.card;
@@ -792,6 +797,12 @@ TASKBOARD.init = function(){
 	if(TASKBOARD.zoom != TASKBOARD.max_zoom){
 		$(".actionToggleAll").text("Zoom in");
 	}
+	
+	$(".cssChanger").bind("click", function(ev){
+		$(this).parent().siblings().removeClass("current").end().toggleClass("current");
+		TASKBOARD.form.toggle('#cssChanger');
+		ev.preventDefault();
+	});
 	
 	$(".cardKey").bind("click", function(ev){
 		$(this).parent().siblings().removeClass("current").end().toggleClass("current");

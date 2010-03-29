@@ -27,6 +27,7 @@ a { outline: 0; }
 body {
 	font-family: Arial, sans-serif;
 		background:#3a4048;
+		background:#fff;
 }
 
 textarea, input, button, select {

@@ -195,7 +195,7 @@
 			margin-bottom: 5px;
 			padding-left: 5px;
 			font-weight: bold;
-			color: #fff;
+			color: #000;
 		}
 
 		#taskboard .column h2:hover {
@@ -381,7 +381,8 @@
 	}
 
 	#taskboard.zoom_0 .column ol.cards li span.progress,
-	#taskboard.zoom_0 .column ol.cards li ul.tags {
+	#taskboard.zoom_0 .column ol.cards li ul.tags,
+	#taskboard.zoom_0 .column ol.cards li dd.notes {
 		display:none;
 	}
 
@@ -402,14 +403,18 @@
 	}
 
 	#taskboard.zoom_1 .column ol.cards li span.progress,
-	#taskboard.zoom_1 .column ol.cards li ul.tags {
+	#taskboard.zoom_1 .column ol.cards li ul.tags,
+	#taskboard.zoom_1 .column ol.cards li dd.notes,
+	#taskboard.zoom_1 .column ol.cards li dt.smlCard  {
 		display:none;
 	}
 
 /* zoom 2 */
 
 	#taskboard.zoom_2 .column ol.cards li span.progress,
-	#taskboard.zoom_2 .column ol.cards li ul.tags {
+	#taskboard.zoom_2 .column ol.cards li ul.tags,
+	#taskboard.zoom_2 .column ol.cards li dd.notes,
+	#taskboard.zoom_2 .column ol.cards li dt.notes {
 		display:none;
 	}
 
@@ -418,12 +423,38 @@
 	#taskboard.zoom_3 .column ol.cards li ul.tags {
 		display:none;
 	}
-
+	#taskboard.zoom_3 .column ol.cards li dd.notes,
+	#taskboard.zoom_3 .column ol.cards li dt.notes {
+		display:none;
+	}
 /* zoom 4 */
 
 	#taskboard.zoom_4 .column ol.cards li ul.tags {
-		height: 1.8em;
 	}
+	#taskboard.zoom_4 .column ol.cards li dd.notes,
+	#taskboard.zoom_4 .column ol.cards li dt.notes {
+		display:none;
+	}
+	
+/* zoom 5 */
+
+	#taskboard.zoom_5 .column ol.cards li ul.tags {
+		/*height: 1.8em; */
+	}
+	
+	#taskboard .column ol.cards > li h1{
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	#taskboard .column ol.cards > li h2 {
+		font-weight: normal;
+	}
+	#taskboard .column ol.cards > li h3 {
+		font-weight: normal;
+	}
+	#taskboard .column ol.cards > li li {
+	}
+
 
 /* Form drop animation hack */
 .ui-effects-wrapper {
@@ -442,7 +473,7 @@
 /*-webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 3px ;
 	-moz-box-shadow:0px 0px 3px rgba(0, 0, 0, 0.5);*/
 	/*background:#ddd none repeat scroll 0 0;*/
-	color: #fff;
+	color: #000;
 	font-weight:normal;
 }
 
@@ -543,7 +574,7 @@ dl#card dd#notes {
 	background-color: #d1d1d1;
 }
 
-/* Card type style -------------------------- */
+/* Big Card type style -------------------------- */
 
 #card #notes h1,
 #card #notes h2,
@@ -552,6 +583,10 @@ dl#card dd#notes {
 #card #notes h5 {
 	font-weight: bold;
 	margin-bottom: 0.5em;
+}
+
+#card #notes h1 {
+	font-size: 1em;
 }
 
 #card #notes h1 { font-size: 1.5em; border-bottom: 1px solid ;}
@@ -645,12 +680,12 @@ form #tagsForm {
 		color: #000000;
 	}
 
-#cardKeyWrapper ol {
+#cardKeyWrapper ol, #cssWrapper ol {
 	margin-top: 10px;
 	width: 700px;
 }
 
-#cardKeyWrapper ol li{
+#cardKeyWrapper ol li, #cssChanger ol li{
 	margin-right: 0px;
 	display: inline;
 	padding: 5px;
