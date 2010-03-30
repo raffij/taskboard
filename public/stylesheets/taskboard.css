@@ -88,6 +88,7 @@
 	}
 
 	#actions li.current {
+		list-style: none;
 		/*border: 3px solid #666;*/
 		border-bottom-color: #16191C;
 		background-color: #ffcc00; 
@@ -166,6 +167,7 @@
 }
 
 	#taskboard .column {
+		list-style: none;
 		float: left;
 		padding: 0 7px 0 0;
 		margin: 45px 0 0 7px;
@@ -216,6 +218,7 @@
 		}
 
 			#taskboard .column ol.cards > li {
+				list-style: none;
 				min-height: 25px;
 				margin-bottom: 5px;
 				border: 1px solid transparent;
@@ -227,6 +230,10 @@
 				line-height: 1.4em;
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
+			}
+			
+			#taskboard .column ol.cards > li li  {
+				list-style-position: inside; 
 			}
 
 				#taskboard .column ol.cards li ul.actions {
@@ -242,6 +249,7 @@
 
 
 					#taskboard .column ol.cards li ul.actions li {
+						list-style: none;
 						min-height: auto;
 						margin-bottom: 2px;
 						border: none;
@@ -266,6 +274,7 @@
 				}
 
 					#taskboard .column ol.cards li ul.tags li {
+						list-style: none;
 						float:left;
 						padding: 2px 3px;
 						margin: 2px 2px 0 0;
@@ -368,7 +377,7 @@
 #taskboard.zoom_0 .column ol.cards li {
 	padding: 3px;
 	font-size: 0.6em;
-	height: 1em;
+/*	height: 1em;*/
 }
 
 	#taskboard.zoom_0 .column ol.cards li:hover ul.actions {
@@ -659,6 +668,7 @@ form #tagsForm {
 }
 
 #card .tags li {
+	list-style: none;
 	padding: 5px;
 	margin-right: 5px;
 	border: 1px solid #CCCCCC;
@@ -754,9 +764,11 @@ form #tagsForm {
 
 #filterTags li {
 	float:left;
+	list-style: none;
 }
 
 #filterTags li a {
+	list-style: none;
 	display: block;
 	padding: 3px;
 	background-color: #666;
@@ -769,6 +781,7 @@ form #tagsForm {
 }
 
 #filterTags li.current a {
+		list-style: none;
 	background-color: #fff;
 	border: 1px solid #CCC;
 color:#000;
