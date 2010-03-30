@@ -19,9 +19,19 @@ class TaskboardController < JuggernautSyncController
   include ApplicationHelper
   
   before_filter :authorize_read_only, :except => ["show", "index", "get_taskboard", "load_burndown"]
+  before_filter :authorize_permitted, :except => ["index"]
 
+  def authorize_permitted
+    return if params[:id].nil?
+      
+    if !current_user.has_permission?(Taskboard.find_by_id(params[:id]))
+      flash[:error] = "You do not have permission to view that project"
+      redirect_to :action => 'index'
+    end
+  end
+  
   def index
-    @taskboards = Taskboard.find(:all, :order => 'name')
+    @taskboards = current_user.taskboards #Taskboard.find(:all, :order => 'name')
   end
 
   def show

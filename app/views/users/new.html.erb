@@ -60,7 +60,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
     <strong>Permissions</strong><br/>
     <ul id="permissions">
       <% Taskboard.all.each do |taskboard| %>
-        <%= check_box_tag("user[taskboard_ids][]", taskboard.id, false) %> <label for=""><%= taskboard.name %></label>
+        <%= check_box_tag("user[taskboard_ids][]", taskboard.id, false) %> <label><%= taskboard.name %></label>
 	    <% end %>
 	  </ul>
 	</p>
