@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   validates_confirmation_of :password
   
+  attr_accessor :taskboard_ids
+  
+  has_many :permissions
+  has_many :taskboards, :through => :permissions
+  
   def validate
     errors.add_to_base("No password") if hashed_password.blank?
   end
@@ -45,6 +50,10 @@ class User < ActiveRecord::Base
       user = nil if user.hashed_password != expected_password
     end
     user
+  end
+  
+  def has_permission?(taskboard)
+      self.taskboards.include?(taskboard)
   end
   
   private

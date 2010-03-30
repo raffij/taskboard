@@ -1,0 +1,5 @@
+# Run the following in script/console
+# Replace the details with the values you need.
+#
+u = User.new(:username => 'admin', :password => 'password1', :password_confirmation => 'password1', :editor => 1)
+u.save!

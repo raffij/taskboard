@@ -53,6 +53,15 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 
   <p><label for="password_confirmation">Confirm Password</label><br/>
   <%= f.password_field :password_confirmation %></p>
+  
+  <p>
+    <strong>Permissions</strong><br/>
+    <ul id="permissions">
+      <% Taskboard.all.each do |taskboard| %>
+        <%= check_box_tag("user[taskboard_ids][]", taskboard.id, @user.has_permission?(taskboard)) %> <label for=""><%= taskboard.name %></label>
+	    <% end %>
+	  </ul>
+	</p>
 
   <p><%= submit_tag 'Do it!' %></p>
 <% end %>

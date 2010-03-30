@@ -46,6 +46,15 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
   [secret]
 </p>
 
+<p>
+  <strong>Projects:</strong>
+  <ul>
+  <% @user.permissions.each do |permission| %>
+    <li><%= permission.taskboard.name %></li>
+  <% end %>
+  </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Admin', users_path %>

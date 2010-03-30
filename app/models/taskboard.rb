@@ -18,6 +18,9 @@
 class Taskboard < ActiveRecord::Base
   has_many :cards
   has_many :columns
+  
+  has_many :permissions
+  has_many :users, :through => :permissions
 
   def burndown
     burndown = Hash.new(0)
