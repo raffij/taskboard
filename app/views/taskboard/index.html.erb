@@ -29,7 +29,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	<h1>
 		<%= link_to "Taskboard", { :controller => "taskboard", :action => "index" }, :title => "Back to taskboard list", :rel => 'home', :class => "logo" %>
 	</h1>
-
+<p class="error"><%= flash[:error] %></p>
 <ul class="actions">
 <li>
 	<h2>Choose a taskboard from a list:</h2>
@@ -44,7 +44,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	<fieldset>
 		<label for="name">Type a name of new taskboard:</label>
 		<input type="text" id="name" name="name" /><input type="submit" value="Add"/>
-		<p class="error"><%= flash[:error] %></p>
+		
 	</fieldset>
 	</form>
 </li>
