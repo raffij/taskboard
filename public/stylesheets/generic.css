@@ -20,7 +20,7 @@
 /* Reset */
 html,body,div,span,ul,ol,li,dl,dd,dt,h1,h2,h3,h4,h5,h6,p,fieldset { margin: 0; padding: 0; }
 h1,h2,h3,h4,h5,h6,em,strong { font-size: 1em; font-weight: normal; font-style: normal; }
-ul,ol { list-style: none; }
+ul,ol { /*list-style: none; */}
 img,fieldset { border: none; }
 a { outline: 0; }
 
