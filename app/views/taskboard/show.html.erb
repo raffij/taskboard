@@ -33,7 +33,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	<%= javascript_tag "$.extend(TASKBOARD, { authenticity_token : #{form_authenticity_token.inspect} });" if protect_against_forgery? %>
 	<%= juggernaut :channels => [@taskboard_id], :debug => false %>
 	
-	<script>
+<!--	<script>
 	      if($.cookie("css")) {
 	         $("link").attr("href",$.cookie("css"));
 	      }
@@ -45,7 +45,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	      });
 	   });
 	</script>
-	
+-->
 </head>
 <body>
 
@@ -53,7 +53,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	<div id="headerBar">
 		<h1><%= link_to "Taskboard", { :controller => "taskboard", :action => "index" }, :title => "Back to taskboards list", :rel => 'home' %></h1>
 		<ul id="actions">
-			<li><a class="cssChanger" href="#" title="Style">Style</a></li>
+		<!--	<li><a class="cssChanger" href="#" title="Style">Style</a></li> -->
 			<li><a class="cardKey" href="#" title="Colours">Key</a></li>
 			<% if session[:editor] -%>
 			<li><a class="actionAddCards" href="#" title="Add some cards to this taskboard">Add cards</a></li>
@@ -66,15 +66,15 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	</div>
 		<form id="formActions" action="#">
 			
-			<fieldset id="cssChanger">
+		<!--			<fieldset id="cssChanger">
 				<a class='actionHideForm' href='#' title='Hide'><img src='/images/hide_off.png' alt='Hide'/></a>
-					<div id="cssWrapper">			
+			<div id="cssWrapper">			
 						<ol id="nav">
 							<li><a href="#" rel="/stylesheets/taskboard.css">Columns</a></li>
 		      		<li><a href="#" rel="/stylesheets/listview.css">List</a></li>
 		      	</ol>
 				</div>
-			</fieldset>	
+			</fieldset>	-->
 			
 			
 			<fieldset id="cardKey">
