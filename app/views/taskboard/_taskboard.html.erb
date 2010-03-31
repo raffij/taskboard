@@ -19,6 +19,6 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 <li>
 	<%= link_to truncate(h(taskboard.name), :length => 35), { :controller => 'taskboard', :action => 'show', :id => taskboard }, :title => "Go to '#{h(taskboard.name)}'" %>
 	<% if current_user.is_admin %>
-	<span class="delete_link">(<%= link_to "Delete", { :controller => 'taskboard', :action => 'destroy', :id => taskboard }, :confirm => "Are you sure you want to delete '#{h(taskboard.name)}'?\n\n This cannot be undone." %>)</span>
+	<span class="delete_link">(<%= link_to "Delete", { :controller => 'taskboard', :action => 'destroy', :id => taskboard }, :confirm => "Are you sure you REALLY, REALLY want to delete '#{h(taskboard.name)}'?\n\n This cannot be undone." %>)</span>
 	<% end %>
 </li>
