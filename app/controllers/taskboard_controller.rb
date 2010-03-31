@@ -22,7 +22,7 @@ class TaskboardController < JuggernautSyncController
   before_filter :authorize_permitted, :except => ["index"]
 
   def index
-    @taskboards = current_user.taskboards #Taskboard.find(:all, :order => 'name')
+    @taskboards = current_user.taskboards.sort  {|a,b| a.name <=> b.name}
   end
 
   def show
