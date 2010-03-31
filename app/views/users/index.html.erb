@@ -40,6 +40,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
     <th>Login</th>
     <th>Email</th>
 		<th>Editor</th>
+		<th>Admin</th>
   </tr>
 
   <% for user in @users %>
@@ -47,6 +48,7 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
       <td><%=h user.username %></td>
       <td><%=h user.email %></td>
 			<td><%=h user.editor %></td>
+			<td><%=h user.is_admin %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Delete', user, 
           :confirm => "Are you sure you want to delete '#{user.username}'?",
