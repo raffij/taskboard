@@ -48,10 +48,12 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	</fieldset>
 	</form>
 </li>
+<% if current_user.is_admin? %>
 <li>
 	<h2>User management</h2>
 	<h2><%= link_to 'Yes please!', users_path %></h2>
 </li>
+<% end %>
 <% end -%>
 </ul>
 </body>
