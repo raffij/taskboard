@@ -28,6 +28,13 @@ class TaskboardController < JuggernautSyncController
   def show
     @taskboard_id = params[:id].to_i
   end
+  
+  def destroy
+    @taskboard = Taskboard.find(params[:id])
+    @taskboard.destroy
+    
+    redirect_to :action => 'index'
+  end
 
   def add_taskboard
     if params[:name].empty?
@@ -37,6 +44,7 @@ class TaskboardController < JuggernautSyncController
       taskboard = Taskboard.new
       taskboard.name = params[:name]
       taskboard.columns << Column.new(:name => Column.default_name)
+      taskboard.users << current_user
       taskboard.save!
       redirect_to :action => 'show', :id => taskboard.id
     end

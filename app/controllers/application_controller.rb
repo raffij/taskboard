@@ -37,10 +37,6 @@ class ApplicationController < ActionController::Base
     report_file.sync = true
     @report_loggers[id] = Logger.new(report_file)
   end
-  
-  def current_user
-    User.find_by_id(session[:user_id]) unless session[:user_id].nil?
-  end
 
   private
   def authorize
