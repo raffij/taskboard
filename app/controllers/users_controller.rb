@@ -62,6 +62,8 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
+    
+    params[:user][:taskboard_ids] ||= []
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
