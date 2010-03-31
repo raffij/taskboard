@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_filter :authorize_permitted
+
   # GET /users
   # GET /users.xml
   def index
@@ -80,6 +83,15 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  
+  def authorize_permitted
+    if current_user.nil? || !current_user.is_admin
+      flash[:error] = "You do not have permission to administer user accounts"
+      redirect_to :controller => 'taskboard', :action => 'index'
     end
   end
   
