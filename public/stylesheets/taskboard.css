@@ -234,6 +234,7 @@
 			
 			#taskboard .column ol.cards > li li  {
 				list-style-position: inside; 
+				list-style-type: square; 
 			}
 
 				#taskboard .column ol.cards li ul.actions {
