@@ -19,7 +19,7 @@ class TaskboardController < JuggernautSyncController
   include ApplicationHelper
   
   before_filter :authorize_read_only, :except => ["show", "index", "get_taskboard", "load_burndown"]
-  before_filter :authorize_permitted, :except => ["index"]
+  #before_filter :authorize_permitted, :except => ["index"]
 
   def index
     @taskboards = current_user.taskboards.sort  {|a,b| a.name <=> b.name}
