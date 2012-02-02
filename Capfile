@@ -7,7 +7,7 @@ ssh_options[:keys] = File.expand_path('~/keys/mbm-keypair')
 
 default_run_options[:pty] = true
 set :deploy_via, :remote_cache
-set :repository,  "git@github.com:maccman/taskboard.git"
+set :repository,  "git@github.com:raffij/taskboard.git"
 set :scm, "git"
 set :branch, "master"
 
