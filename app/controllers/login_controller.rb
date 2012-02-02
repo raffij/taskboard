@@ -16,7 +16,9 @@
 # along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 
 class LoginController < ApplicationController
-  before_filter [:authorize, :authorize_read_only], :except => ["login","logout"]
+
+  skip_before_filter :authorize, :only => [:login, :logout]
+  skip_before_filter :authorize_read_only, :only => [:login, :logout]
 
   def add_user
     @user = User.new(params[:user])

@@ -150,7 +150,8 @@ class JuggernautSyncController < ApplicationController
 
   def send_via_juggernaut channel, function, json, message = "Juggernaut!!!"
     response = "{ status : 'success', message : #{message.to_json}, object : #{json} }"
-    Juggernaut.send_to_channels( generate_js_call(function, response), [channel]);
+    Juggernaut.publish(channel, generate_js_call(function, response))
+    #Juggernaut.send_to_channels( generate_js_call(function, response), [channel]);
     response
   rescue Errno::ECONNREFUSED
     # We don't care

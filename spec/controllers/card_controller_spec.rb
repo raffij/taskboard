@@ -1,24 +1,7 @@
-# Copyright (C) 2009 Cognifide
-# 
-# This file is part of Taskboard.
-# 
-# Taskboard is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Taskboard is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
-
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe CardController do
-  integrate_views
+  render_views
 
   context "while dealing with name" do
   
@@ -31,7 +14,8 @@ describe CardController do
       post 'update_name', { :id => '34', :name => 'new name'}, {:user_id => 1, :editor => true}
       
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      puts response.body
+      response.body.should match /status: 'success'/
       card.name.should eql('new name')
     end
   
@@ -48,7 +32,7 @@ describe CardController do
       post 'update_notes', { :id => '77', :notes => '*this* is markdown message' }, {:user_id => 1, :editor => true}
     
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
       card.notes.should eql('*this* is markdown message')
     end
   
@@ -63,7 +47,7 @@ describe CardController do
       controller.should_receive(:sync_change_card_color).with(card).and_return("{ status: 'success' }")
       post 'change_color', { :id => 12, :color => '#fc0fc0' }, {:user_id => 1, :editor => true}
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
     end
     
     it "should allow changing color and send appropriate error in case of fail" do
@@ -72,7 +56,7 @@ describe CardController do
       card.should_receive(:change_color).with('#fc0fc0').and_return(false)
       post 'change_color', { :id => 12, :color => '#fc0fc0' }, {:user_id => 1, :editor => true}
       response.should be_success
-      response.body.should include_text("status: 'error'")
+      response.body.should match /status: 'error'/
     end
     
   end
@@ -91,7 +75,7 @@ describe CardController do
       post 'add_tag', { :id => '3', :tags => 'ala' }, {:user_id => 1, :editor => true}
 
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
       card.tag_list.size.should eql(2)
     end
     
@@ -106,7 +90,7 @@ describe CardController do
       post 'add_tag', { :id => '3', :tags => 'ala, ma,kota' }, {:user_id => 1, :editor => true}
 
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
       card.tag_list.size.should eql(4)
     end
     
@@ -120,7 +104,7 @@ describe CardController do
       post 'remove_tag', { :id => '5', :tag => 'ma' }, {:user_id => 1, :editor => true}
       
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
       
       card.tag_list.size.should eql(2)
 
@@ -143,7 +127,7 @@ describe CardController do
       post 'update_hours', { :id => '51', :hours_left => '12' }, {:user_id => 1, :editor => true}
 
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
     end
 
     it "should allow changes in hours left for 'today'" do
@@ -156,7 +140,7 @@ describe CardController do
       post 'update_hours', { :id => '51', :hours_left => '12', :updated_at => 'today' }, {:user_id => 1, :editor => true}
 
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
     end
 
     it "should allow changes in hours left for 'tomorrow'" do
@@ -169,7 +153,7 @@ describe CardController do
       post 'update_hours', { :id => '51', :hours_left => '12', :updated_at => 'tomorrow' }, {:user_id => 1, :editor => true}
 
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
     end
 
     it "should allow changes in hours left for 'yesterday'" do
@@ -181,17 +165,17 @@ describe CardController do
       post 'update_hours', { :id => '51', :hours_left => '12', :updated_at => 'yesterday' }, {:user_id => 1, :editor => true}
 
       response.should be_success
-      response.body.should include_text("status: 'success'")
+      response.body.should match /status: 'success'/
     end
     
     it "should validate hours on save" do
       post 'update_hours', { :id => '13', :hours_left => 'miau' }, {:user_id => 1, :editor => true}
       response.should be_success
-      response.body.should include_text("status: 'error'")
+      response.body.should match /status: 'error'/
 
       post 'update_hours', { :id => '13', :hours_left => '-2' }
       response.should be_success
-      response.body.should include_text("status: 'error'")
+      response.body.should match /status: 'error'/
     end
   
   end
@@ -206,7 +190,7 @@ describe CardController do
 
       post 'load_burndown', { :id => '34'}, {:user_id => 1, :editor => true}
       response.should be_success
-      response.body.should include_text("1223762400000")
+      response.body.should match /1223762400000/
     end
   
   end

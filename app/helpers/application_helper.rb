@@ -32,7 +32,4 @@ module ApplicationHelper
     Time.mktime(time[0], time[1], time[2], 0, 0, 0, 0).to_i
   end
   
-  def current_user
-    User.find_by_id(session[:user_id]) unless session[:user_id].nil?
-  end
 end

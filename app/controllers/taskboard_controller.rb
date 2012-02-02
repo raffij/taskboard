@@ -19,21 +19,13 @@ class TaskboardController < JuggernautSyncController
   include ApplicationHelper
   
   before_filter :authorize_read_only, :except => ["show", "index", "get_taskboard", "load_burndown"]
-  #before_filter :authorize_permitted, :except => ["index"]
 
   def index
-    @taskboards = current_user.taskboards.sort  {|a,b| a.name <=> b.name}
+    @taskboards = Taskboard.find(:all, :order => 'name')
   end
 
   def show
     @taskboard_id = params[:id].to_i
-  end
-  
-  def destroy
-    @taskboard = Taskboard.find(params[:id])
-    @taskboard.destroy
-    
-    redirect_to :action => 'index'
   end
 
   def add_taskboard
@@ -44,7 +36,6 @@ class TaskboardController < JuggernautSyncController
       taskboard = Taskboard.new
       taskboard.name = params[:name]
       taskboard.columns << Column.new(:name => Column.default_name)
-      taskboard.users << current_user
       taskboard.save!
       redirect_to :action => 'show', :id => taskboard.id
     end
@@ -177,14 +168,5 @@ class TaskboardController < JuggernautSyncController
 
     def send_error message = 'Error!'
       render :text => "{ status: 'error', message: #{message.to_json} }"
-    end
-    
-    def authorize_permitted
-      return if params[:id].nil?
-
-      if !current_user.has_permission?(Taskboard.find_by_id(params[:id]))
-        flash[:error] = "You do not have permission to view that project"
-        redirect_to :action => 'index'
-      end
     end
 end

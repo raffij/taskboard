@@ -25,27 +25,26 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	<%= stylesheet_link_tag 'print', :media => "print" %>
 	<!-- TODO: pack jQuery and plugins for production -->
 	<%= javascript_include_tag 'lib/jquery', 'lib/jquery-ui.min', 'lib/jquery.jeditable', 'lib/jquery.colorpicker', 'lib/jquery.flot', 'lib/jquery.cookie', 'lib/showdown' %>
-	<%= javascript_include_tag 'lib/juggernaut/swfobject', 'lib/juggernaut/juggernaut', 'lib/juggernaut/jquerynaut', 'lib/juggernaut/json' %>
+	<script src="http://localhost:8080/application.js" type="text/javascript" charset="utf-8"></script>
 	<%= javascript_include_tag 'utils', 'taskboard' %>
 
 	<%= javascript_tag "$.extend(TASKBOARD, { id : '#{@taskboard_id}'});" %>
 	<%= javascript_tag "$.extend(TASKBOARD, { editor : #{session[:editor]}});" %>
 	<%= javascript_tag "$.extend(TASKBOARD, { authenticity_token : #{form_authenticity_token.inspect} });" if protect_against_forgery? %>
-	<%= juggernaut :channels => [@taskboard_id], :debug => false %>
-	
-<!--	<script>
-	      if($.cookie("css")) {
-	         $("link").attr("href",$.cookie("css"));
-	      }
-	   $(document).ready(function() { 
-	      $("#nav li a").click(function() { 
-	         $("link").attr("href",$(this).attr('rel'));
-	         $.cookie("css",$(this).attr('rel'), {expires: 365, path: '/'});
-	         return false;
-	      });
-	   });
+	<script>
+	var juggernaut = new Juggernaut();
+	$('body').trigger('juggernaut:initialized');
+	juggernaut.on("connect", function(){ 
+	 	$('body').trigger('juggernaut:connected');
+	});
+
+	juggernaut.on("disconnect", function(){ 
+		$('body').trigger('juggernaut:disconnected');
+	});
+	juggernaut.subscribe(TASKBOARD.id, function(data){
+    	eval(data);
+  	});
 	</script>
--->
 </head>
 <body>
 
@@ -53,8 +52,6 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 	<div id="headerBar">
 		<h1><%= link_to "Taskboard", { :controller => "taskboard", :action => "index" }, :title => "Back to taskboards list", :rel => 'home' %></h1>
 		<ul id="actions">
-		<!--	<li><a class="cssChanger" href="#" title="Style">Style</a></li> -->
-			<li><a class="cardKey" href="#" title="Colours">Key</a></li>
 			<% if session[:editor] -%>
 			<li><a class="actionAddCards" href="#" title="Add some cards to this taskboard">Add cards</a></li>
 			<li><a class="actionAddColumn" href="#" title="Add a column to this taskboard">Add column</a></li>
@@ -65,51 +62,21 @@ along with Taskboard. If not, see <http://www.gnu.org/licenses/>.
 		</ul>
 	</div>
 		<form id="formActions" action="#">
-			
-		<!--			<fieldset id="cssChanger">
-				<a class='actionHideForm' href='#' title='Hide'><img src='/images/hide_off.png' alt='Hide'/></a>
-			<div id="cssWrapper">			
-						<ol id="nav">
-							<li><a href="#" rel="/stylesheets/taskboard.css">Columns</a></li>
-		      		<li><a href="#" rel="/stylesheets/listview.css">List</a></li>
-		      	</ol>
-				</div>
-			</fieldset>	-->
-			
-			
-			<fieldset id="cardKey">
-				
-				<a class='actionHideForm' href='#' title='Hide'><img src='/images/hide_off.png' alt='Hide'/></a>
-
-				<div id="cardKeyWrapper">
-					<ol>
-					<li style="color:white;">Card key</li>
-					<li class="color F8E065" style="background-color: #F8E065;">New</li>
-					<li class="color BBFF44" style="background-color: #BBFF44;">In analysis</li>
-					<li class="color 53E36D" style="background-color: #53E36D;">Analysis complete</li>
-					<li class="color 23C7A1" style="background-color: #23C7A1;">Accepted</li>
-					<li class="color ff7f00" style="background-color: #ff7f00;">Epic</li>
-					<li class="color 25aef5" style="background-color: #25aef5;">Process</li>
-					<li class="color CCCCCC" style="background-color: rgb(204, 204, 204);">Out of date</li>
-					<li class="color FF2019" style="background-color: rgb(255, 32, 25);">Important</li>
-					</ol>
-				</div>
-			</fieldset>
 			<fieldset id="fieldsetAddCards">
-				<a class='actionHideForm' href='#' title='Hide'><img src='/images/hide_off.png' alt='Hide'/></a>
+				<a class='actionHideForm' href='#' title='Hide'><img src='/assets/hide_off.png' alt='Hide'/></a>
 				<label for="inputAddCards">Type a card title, JIRA issue or paste a filter URL:</label>
 				<input id="inputAddCards" type="text" />
 				<input type="submit" value="Add" />
 				<span>to</span> <select id="selectColumn"><option>Test</option></select>
 			</fieldset>
 			<fieldset id="fieldsetAddColumn">
-				<a class='actionHideForm' href='#' title='Hide'><img src='/images/hide_off.png' alt='Hide'/></a>
+				<a class='actionHideForm' href='#' title='Hide'><img src='/assets/hide_off.png' alt='Hide'/></a>
 				<label for="inputAddColumn">Type a column name:</label>
 				<input id="inputAddColumn" type="text" />
 				<input type="submit" value="Add" />
 			</fieldset>
 			<fieldset id="fieldsetTags">
-				<a class='actionHideForm' href='#' title='Hide'><img src='/images/hide_off.png' alt='Hide'/></a>
+				<a class='actionHideForm' href='#' title='Hide'><img src='/assets/hide_off.png' alt='Hide'/></a>
 				<label>Filter cards by tags:</label>
 				<ul id="filterTags"></ul>
 			</fieldset>
